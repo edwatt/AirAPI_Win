@@ -21,12 +21,24 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AirAPI_Win.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="endian.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hidapi-win\include\hidapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AirAPI_Win.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

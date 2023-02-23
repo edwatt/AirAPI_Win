@@ -1,0 +1,21 @@
+﻿  pch.cpp
+  AirAPI_Win.cpp
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.cpp(244,5): warning C4273: 'StartConnection': inconsistent dll linkage
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.h(10,27): message : see previous definition of 'StartConnection'
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.cpp(275,5): warning C4273: 'StopConnection': inconsistent dll linkage
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.h(13,27): message : see previous definition of 'StopConnection'
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.cpp(281,8): warning C4273: 'GetQuaternion': inconsistent dll linkage
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.h(16,30): message : see previous definition of 'GetQuaternion'
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.cpp(291,8): warning C4273: 'GetEuler': inconsistent dll linkage
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.h(19,30): message : see previous definition of 'GetEuler'
+  dllmain.cpp
+  Generating Code...
+     Creating library C:\Users\mattm\Desktop\matt\AirAPI_Win\x64\Debug\AirAPI_Win.lib and object C:\Users\mattm\Desktop\matt\AirAPI_Win\x64\Debug\AirAPI_Win.exp
+AirAPI_Win.obj : error LNK2019: unresolved external symbol FusionAhrsInitialise referenced in function "unsigned long __cdecl track(void *)" (?track@@YAKPEAX@Z)
+AirAPI_Win.obj : error LNK2019: unresolved external symbol FusionAhrsSetSettings referenced in function "unsigned long __cdecl track(void *)" (?track@@YAKPEAX@Z)
+AirAPI_Win.obj : error LNK2019: unresolved external symbol FusionAhrsUpdateNoMagnetometer referenced in function "unsigned long __cdecl track(void *)" (?track@@YAKPEAX@Z)
+AirAPI_Win.obj : error LNK2019: unresolved external symbol FusionAhrsGetQuaternion referenced in function "unsigned long __cdecl track(void *)" (?track@@YAKPEAX@Z)
+AirAPI_Win.obj : error LNK2019: unresolved external symbol FusionAhrsGetEarthAcceleration referenced in function "unsigned long __cdecl track(void *)" (?track@@YAKPEAX@Z)
+AirAPI_Win.obj : error LNK2019: unresolved external symbol FusionOffsetInitialise referenced in function "unsigned long __cdecl track(void *)" (?track@@YAKPEAX@Z)
+AirAPI_Win.obj : error LNK2019: unresolved external symbol FusionOffsetUpdate referenced in function "unsigned long __cdecl track(void *)" (?track@@YAKPEAX@Z)
+C:\Users\mattm\Desktop\matt\AirAPI_Win\x64\Debug\AirAPI_Win.dll : fatal error LNK1120: 7 unresolved externals
