@@ -16,7 +16,7 @@
 #define AIR_PID 0x0424
 
 //Is Tracking
-bool g_isTracking = false;
+bool g_isTracking = true;
 
 // ticks are in nanoseconds, 1000 Hz packets
 #define TICK_LEN (1.0f / 1E9f)
@@ -163,6 +163,7 @@ struct ThreadParams {
 };
 
 DWORD WINAPI track(LPVOID lpParam) {
+	printf("Starting TrackThread\n");
 	//Thread to handle tracking
 	unsigned char buffer[64] = {};
 	uint64_t last_sample_tick = 0;
@@ -235,6 +236,7 @@ DWORD WINAPI track(LPVOID lpParam) {
 
 		update_rotation(deltaTime, ang_vel);
 
+		printf_s("Euler Roll: %f", euler.angle.roll);
 	}
 	return 0;
 }
