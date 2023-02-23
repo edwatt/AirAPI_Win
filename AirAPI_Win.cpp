@@ -7,7 +7,7 @@
 #include "endian.h"
 #include "hidapi-win/include/hidapi.h"
 #include "cglm/cglm.h"
-#include "Fusion/Fusion.h"
+
 #include <Windows.h>
 #include <iostream>
 
@@ -182,7 +182,7 @@ DWORD WINAPI track(LPVOID lpParam) {
 	// Initialise algorithms
 	FusionOffset offset;
 	FusionAhrs ahrs;
-
+	
 	FusionOffsetInitialise(&offset, SAMPLE_RATE);
 	FusionAhrsInitialise(&ahrs);
 
@@ -290,7 +290,7 @@ float* GetQuaternion()
 
 float* GetEuler()
 {
-	float* e = new float[4];
+	float* e = new float[3];
 	e[0] = euler.angle.pitch;
 	e[1] = euler.angle.roll;
 	e[2] = euler.angle.yaw;

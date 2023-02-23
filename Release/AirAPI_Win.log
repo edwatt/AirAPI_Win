@@ -1,0 +1,23 @@
+﻿  pch.cpp
+  AirAPI_Win.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\ucrt\corecrt_math_defines.h(28,1): warning C4005: 'M_PI': macro redefinition
+C:\Users\mattm\Desktop\matt\AirAPI_Win\Fusion\FusionMath.h(110,1): message : see previous definition of 'M_PI'
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.cpp(244,5): warning C4273: 'StartConnection': inconsistent dll linkage
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.h(10,27): message : see previous definition of 'StartConnection'
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.cpp(275,5): warning C4273: 'StopConnection': inconsistent dll linkage
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.h(13,27): message : see previous definition of 'StopConnection'
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.cpp(281,8): warning C4273: 'GetQuaternion': inconsistent dll linkage
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.h(16,30): message : see previous definition of 'GetQuaternion'
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.cpp(291,8): warning C4273: 'GetEuler': inconsistent dll linkage
+C:\Users\mattm\Desktop\matt\AirAPI_Win\AirAPI_Win.h(19,30): message : see previous definition of 'GetEuler'
+  dllmain.cpp
+     Creating library C:\Users\mattm\Desktop\matt\AirAPI_Win\Release\AirAPI_Win.lib and object C:\Users\mattm\Desktop\matt\AirAPI_Win\Release\AirAPI_Win.exp
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1096,5): error MSB6006: "link.exe" exited with code 1120.
+AirAPI_Win.obj : error LNK2001: unresolved external symbol _FusionOffsetInitialise
+AirAPI_Win.obj : error LNK2001: unresolved external symbol _FusionAhrsInitialise
+AirAPI_Win.obj : error LNK2001: unresolved external symbol _FusionAhrsSetSettings
+AirAPI_Win.obj : error LNK2001: unresolved external symbol _FusionOffsetUpdate
+AirAPI_Win.obj : error LNK2001: unresolved external symbol _FusionAhrsUpdateNoMagnetometer
+AirAPI_Win.obj : error LNK2001: unresolved external symbol _FusionAhrsGetQuaternion
+AirAPI_Win.obj : error LNK2001: unresolved external symbol _FusionAhrsGetEarthAcceleration
+C:\Users\mattm\Desktop\matt\AirAPI_Win\Release\AirAPI_Win.dll : fatal error LNK1120: 7 unresolved externals
