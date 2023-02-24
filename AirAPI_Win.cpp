@@ -7,9 +7,9 @@
 #include "endian.h"
 #include "hidapi-win/include/hidapi.h"
 #include "cglm/cglm.h"
-
 #include <Windows.h>
 #include <iostream>
+#include <mutex>
 
 //Air USB VID and PID
 #define AIR_VID 0x3318
@@ -30,10 +30,14 @@ bool g_isTracking = true;
 static int rows, cols;
 static versor rotation = GLM_QUAT_IDENTITY_INIT;
 static vec3 ang_vel = {}, accel_vec = {};
-static FusionEuler euler;
-static FusionVector earth;
+static  FusionEuler euler;
+static  FusionVector earth;
+
+hid_device* device;
 
 #define SAMPLE_RATE (1000) // replace this with actual sample rate
+
+std::mutex mtx;
 
 typedef struct {
 	uint64_t tick;
@@ -163,7 +167,7 @@ struct ThreadParams {
 };
 
 DWORD WINAPI track(LPVOID lpParam) {
-	printf("Starting TrackThread\n");
+	printf("THREAD BEGIN\n");
 	//Thread to handle tracking
 	unsigned char buffer[64] = {};
 	uint64_t last_sample_tick = 0;
@@ -195,14 +199,30 @@ DWORD WINAPI track(LPVOID lpParam) {
 			.rejectionTimeout = 5 * SAMPLE_RATE, /* 5 seconds */
 	};
 	FusionAhrsSetSettings(&ahrs, &settings);
-
+		printf("THREAD: While begin\n");
 	while (g_isTracking) {
+
 		//try read
-		int res = hid_read(params->device, (unsigned char*)&buffer, sizeof(buffer));
-		if (res < 0) {
-			printf("Unable to get feature report\n");
-			break;
+		//int res = hid_read(device, buffer, sizeof(buffer));
+
+		try {
+			// code that might throw an exception
+			int res = hid_read(device, buffer, sizeof(buffer));
+			if (res < 0) {
+				printf("Unable to get feature report\n");
+				//break;
+			}
 		}
+		catch (const std::exception& e) {
+			// handle the exception
+			printf("THREAD: ERR\n");
+		std::cerr << e.what();
+		}
+
+
+
+		
+
 		//parse
 		parse_report(buffer, sizeof(buffer), &sample);
 
@@ -230,13 +250,18 @@ DWORD WINAPI track(LPVOID lpParam) {
 		// Update gyroscope AHRS algorithm
 		FusionAhrsUpdateNoMagnetometer(&ahrs, gyroscope, accelerometer, deltaTime);
 
+
 		// Print algorithm outputs
+		mtx.lock();
 		euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&ahrs));
 		earth = FusionAhrsGetEarthAcceleration(&ahrs);
-
 		update_rotation(deltaTime, ang_vel);
+		mtx.unlock();
 
-		printf_s("Euler Roll: %f", euler.angle.roll);
+
+		
+
+		//printf_s("Euler Roll: %f", euler.angle.roll);
 	}
 	return 0;
 }
@@ -245,16 +270,17 @@ DWORD WINAPI track(LPVOID lpParam) {
 
 int StartConnection()
 {
-
+	printf("Opening Device\n");
 	// open device
-	hid_device* device = open_device();
+	device = open_device();
 	if (!device) {
 		printf("Unable to open device\n");
 		return 1;
 	}
 
+	printf("Sending Payload\n");
 	// open the floodgates
-	uint8_t magic_payload[] = { 0xaa, 0xc5, 0xd1, 0x21, 0x42, 0x04, 0x00, 0x19, 0x01 };
+	uint8_t magic_payload[] = { 0x00, 0xaa, 0xc5, 0xd1, 0x21, 0x42, 0x04, 0x00, 0x19, 0x01 };
 	int res = hid_write(device, magic_payload, sizeof(magic_payload));
 	if (res < 0) {
 		printf("Unable to write to device\n");
@@ -262,13 +288,14 @@ int StartConnection()
 	}
 	ThreadParams params = { device };
 	g_isTracking = true;
+	printf("Starting Thread\n");
 	//Start Tracking Thread
 	HANDLE trackThread = CreateThread(NULL, 0, track, &params, 0, NULL);
 	if (trackThread == NULL) {
 		std::cout << "Failed to create thread" << std::endl;
 		return 1;
 	}
-
+	printf("Thread Started\n");
 
     return 1;
 }
@@ -292,9 +319,12 @@ float* GetQuaternion()
 
 float* GetEuler()
 {
+	mtx.lock();
 	float* e = new float[3];
+	
 	e[0] = euler.angle.pitch;
 	e[1] = euler.angle.roll;
 	e[2] = euler.angle.yaw;
+	mtx.unlock();
 	return e;
 }
