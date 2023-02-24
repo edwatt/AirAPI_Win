@@ -32,8 +32,11 @@ static versor rotation = GLM_QUAT_IDENTITY_INIT;
 static vec3 ang_vel = {}, accel_vec = {};
 static  FusionEuler euler;
 static  FusionVector earth;
+static FusionQuaternion qt;
 
 hid_device* device;
+
+
 
 #define SAMPLE_RATE (1000) // replace this with actual sample rate
 
@@ -253,7 +256,9 @@ DWORD WINAPI track(LPVOID lpParam) {
 
 		// Print algorithm outputs
 		mtx.lock();
-		euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&ahrs));
+		//euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&ahrs));
+		qt = FusionAhrsGetQuaternion(&ahrs);
+		
 		earth = FusionAhrsGetEarthAcceleration(&ahrs);
 		update_rotation(deltaTime, ang_vel);
 		mtx.unlock();
@@ -309,11 +314,13 @@ int StopConnection()
 
 float* GetQuaternion()
 {
+	mtx.lock();
 	float* q = new float[4];
-	q[0] = 1;
-	q[1] = 2;
-	q[2] = 3;
-	q[3] = 4;
+	q[0] = qt.array[0];
+	q[1] = qt.array[1];
+	q[2] = qt.array[2];
+	q[3] = qt.array[3];
+	mtx.unlock();
 	return q;
 }
 
