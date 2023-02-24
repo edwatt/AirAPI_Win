@@ -257,7 +257,7 @@ DWORD WINAPI track(LPVOID lpParam) {
 		earth = FusionAhrsGetEarthAcceleration(&ahrs);
 		update_rotation(deltaTime, ang_vel);
 		mtx.unlock();
-
+		
 
 		
 

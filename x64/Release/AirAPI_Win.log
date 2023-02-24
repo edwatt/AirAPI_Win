@@ -1,4 +1,5 @@
-﻿  AirAPI_Win.cpp
+﻿  pch.cpp
+  AirAPI_Win.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\ucrt\corecrt_math_defines.h(28,1): warning C4005: 'M_PI': macro redefinition
 R:\git stuff\AirAPI_Win\Fusion\FusionMath.h(110,1): message : see previous definition of 'M_PI'
 R:\git stuff\AirAPI_Win\AirAPI_Win.cpp(271,5): warning C4273: 'StartConnection': inconsistent dll linkage
@@ -9,10 +10,10 @@ R:\git stuff\AirAPI_Win\AirAPI_Win.cpp(310,8): warning C4273: 'GetQuaternion': i
 R:\git stuff\AirAPI_Win\AirAPI_Win.h(16,30): message : see previous definition of 'GetQuaternion'
 R:\git stuff\AirAPI_Win\AirAPI_Win.cpp(320,8): warning C4273: 'GetEuler': inconsistent dll linkage
 R:\git stuff\AirAPI_Win\AirAPI_Win.h(19,30): message : see previous definition of 'GetEuler'
+  dllmain.cpp
      Creating library R:\git stuff\AirAPI_Win\x64\Release\AirAPI_Win.lib and object R:\git stuff\AirAPI_Win\x64\Release\AirAPI_Win.exp
   Generating code
-  2 of 57 functions ( 3.5%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB not found, fall back to full compilation.
+  All 59 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   AirAPI_Win.vcxproj -> R:\git stuff\AirAPI_Win\x64\Release\AirAPI_Win.dll

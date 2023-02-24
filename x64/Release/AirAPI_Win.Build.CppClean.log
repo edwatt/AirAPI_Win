@@ -3,12 +3,12 @@ r:\git stuff\airapi_win\x64\release\vc143.pdb
 r:\git stuff\airapi_win\x64\release\pch.obj
 r:\git stuff\airapi_win\x64\release\dllmain.obj
 r:\git stuff\airapi_win\x64\release\airapi_win.obj
-r:\git stuff\airapi_win\x64\release\airapi_win.dll
-r:\git stuff\airapi_win\x64\release\airapi_win.pdb
 r:\git stuff\airapi_win\x64\release\airapi_win.lib
 r:\git stuff\airapi_win\x64\release\airapi_win.exp
 r:\git stuff\airapi_win\x64\release\airapi_win.ipdb
 r:\git stuff\airapi_win\x64\release\airapi_win.iobj
+r:\git stuff\airapi_win\x64\release\airapi_win.dll
+r:\git stuff\airapi_win\x64\release\airapi_win.pdb
 r:\git stuff\airapi_win\x64\release\airapi_win.tlog\cl.command.1.tlog
 r:\git stuff\airapi_win\x64\release\airapi_win.tlog\cl.read.1.tlog
 r:\git stuff\airapi_win\x64\release\airapi_win.tlog\cl.write.1.tlog
