@@ -256,9 +256,9 @@ DWORD WINAPI track(LPVOID lpParam) {
 
 		// Print algorithm outputs
 		mtx.lock();
-		//euler = FusionQuaternionToEuler(FusionAhrsGetQuaternion(&ahrs));
-		qt = FusionAhrsGetQuaternion(&ahrs);
 		
+		qt = FusionAhrsGetQuaternion(&ahrs);
+		euler = FusionQuaternionToEuler(qt);
 		earth = FusionAhrsGetEarthAcceleration(&ahrs);
 		update_rotation(deltaTime, ang_vel);
 		mtx.unlock();
